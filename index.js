@@ -27,6 +27,9 @@ app.get('/say/:greeting',(req,res)=>{
 app.get('/test',(req,res)=>{
     res.send('apa aja');
 })
+app.get('/unauthorized',(req,res)=>{
+    res.status(401).send("unauthorized")
+})
 
 
 app.listen(3000, () => {
