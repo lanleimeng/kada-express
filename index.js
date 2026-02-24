@@ -24,6 +24,10 @@ app.get('/say/:greeting',(req,res)=>{
     res.send(greeting);
 })
 
+app.get('/test',(req,res)=>{
+    res.send('apa aja');
+})
+
 
 app.listen(3000, () => {
     console.log("Server running on port 3000");
