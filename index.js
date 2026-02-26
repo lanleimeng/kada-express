@@ -1,37 +1,22 @@
-import express from 'express';
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import noteRoutes from "./routes/note.routes.js";
+
+
+dotenv.config();
+connectDB();
 
 const app = express();
 
-app.use((req,res,next)=>{
-    if(false){
-        next(new error("not authorized"))
-    }
-    next();
+app.use(express.json());
 
-});
-app.use((err,req,res,next)=>{
-    res.send("error")
-})
-
-app.get('/',(req,res)=>{
-    res.send("hello ramon")
-});
+app.use("/api/notes", noteRoutes);
 
 
 
-app.get('/say/:greeting',(req,res)=>{
-    const{greeting} = req.params;
-    res.send(greeting);
-})
+const PORT = process.env.PORT || 3000;
 
-app.get('/test',(req,res)=>{
-    res.send('apa aja');
-})
-app.get('/unauthorized',(req,res)=>{
-    res.status(401).send("unauthorized")
-})
-
-
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
