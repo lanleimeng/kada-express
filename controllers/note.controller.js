@@ -3,15 +3,15 @@ import Note from "../models/post.model.js";
 // CREATE
 export const createNote = async (req, res, next) => {
     try {
-        const { title, content } = req.body;
+        const { title, content, author } = req.body;
 
-        if (!title || !content) {
+        if (!title || !content ||!author) {
             return res.status(400).json({
                 message: "Title and content are required",
             });
         }
 
-        const note = await Note.create({ title, content });
+        const note = await Note.create({ title, content, author });
 
         res.status(201).json(note);
     } catch (error) {
