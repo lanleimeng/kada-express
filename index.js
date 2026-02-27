@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import noteRoutes from "./routes/note.routes.js";
 import errorHandler from "./middlewares/error.middleware.js";
-app.use(cors());
+
 
 
 
@@ -12,7 +12,7 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+
 
 app.use(express.json());
 
