@@ -13,9 +13,6 @@ import {
 const router = express.Router();
 
 
-
-
-
 router.get("/", getNotes);
 router.get("/:id", getNoteById);
 router.post("/", createNote);

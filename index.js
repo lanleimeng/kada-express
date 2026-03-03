@@ -6,6 +6,7 @@ import errorHandler from "./middlewares/error.middleware.js";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes.js"
 import { authenticateToken } from "./middlewares/auth.middleware.js";
+import { iatChecker } from "./middlewares/iat.checker.middleware.js";
 
 
 
@@ -19,7 +20,7 @@ app.use(cors({origin:"*"}));
 app.use(express.json());
 
 app.use("/auth", authRoutes);
-app.use("/api",authenticateToken)
+app.use("/api", [authenticateToken, iatChecker]);
 app.use("/api/notes",noteRoutes);
 
 

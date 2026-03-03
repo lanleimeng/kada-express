@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
+import { sendEmail } from "../utils/email.js";
 
 export const registerUser = async (req, res) => {
   try {
@@ -17,6 +18,7 @@ export const registerUser = async (req, res) => {
       email,
       password: hashedPassword,
     });
+     
 
     res.json({ message: "User registered successfully" });
   } catch (error) {
@@ -43,7 +45,13 @@ export const loginUser = async (req, res) => {
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRES }
   );
-   
+ 
+   await sendEmail({
+      to: user.email,
+      subject: "Welcome to My App! 🎉",
+      text: `Hi , welcome to My App!`,
+      html: `<h1>Hi , welcome to My App!</h1><p>We are excited to have you.</p>`,
+    })
 
     res.json({ message: "Login successful" ,token:token});
   } catch (error) {
