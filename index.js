@@ -18,8 +18,10 @@ app.use(cors({origin:"*"}));
 
 app.use(express.json());
 
-app.use("/", noteRoutes);
 app.use("/auth", authRoutes);
+app.use("/api",authenticateToken)
+app.use("/api/notes",noteRoutes);
+
 
 
 
