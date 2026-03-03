@@ -5,7 +5,7 @@ import noteRoutes from "./routes/note.routes.js";
 import errorHandler from "./middlewares/error.middleware.js";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes.js"
-
+import { authenticateToken } from "./middlewares/auth.middleware.js";
 
 
 
